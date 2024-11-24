@@ -1,0 +1,8 @@
+<h1>Messages</h1>
+{{#each messages}}
+<form method="get" action="/messages/{{this}}">
+    {{this}}<button type ="submit">message</button>
+</form>
+
+{{/each}}
+<a href="/">Message</a>

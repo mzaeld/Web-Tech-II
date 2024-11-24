@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+</head>
+<body>
+    <h1>Provide Your Details</h1>
+    <form action="/submit-details" method="POST">
+        <!-- Language Selection -->
+        <label for="languagesfluent">Language you are fluent in:</label>
+        <select name="fluentlanguage" id="fluentlanguages" required>
+            {{#each languages}}
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <br><br>
+
+        <label for="languageslearn">Language you want to learn:</label>
+        <select name="learnlanguage" id="learnlanguages" required>
+            {{#each languages2}}
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <br><br>
+
+        <!-- Gender Selection -->
+        <label for="gender">Select your gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+
