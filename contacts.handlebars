@@ -1,0 +1,95 @@
+<h1>Your Contacts</h1>
+
+<!-- Add some styling -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        background-color: #fff;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    li strong {
+        color: #007BFF;
+    }
+    li form {
+        margin-left: 10px;
+    }
+    button {
+        background-color: #d9534f;
+        border: none;
+        padding: 5px 10px;
+        color: white;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    button:hover {
+        background-color: #c9302c;
+    }
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        text-decoration: none;
+        color: #007BFF;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<ul>
+    {{#each contacts}}
+    <li>
+        <div>
+            <strong>{{this.name}}</strong> - {{this.email}}
+        </div>
+        <form action="/profile/contacts/remove-contact" method="POST">
+            <input type="hidden" name="contactEmail" value="{{this.email}}" />
+            <button type="submit">Remove</button>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+
+<a href="/profile/contacts/add-contact">Add Contacts</a>
+
+
+{{!-- <h1>Your Contacts</h1>
+{{#if contacts.length}}
+<ul>
+    {{#each contacts}}
+    <li>
+        <strong>{{this.name}}</strong> - {{this.email}}
+        <form action="/profile/contacts/remove-contact" method="POST">
+            <input type="hidden" name="contactEmail" value="{{this.email}}" />
+            <button type="submit">Remove</button>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>No contacts found.</p>
+{{/if}} --}}
+
+
+

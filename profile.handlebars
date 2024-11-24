@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #333;
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{name}}!</h1>
+    <p><strong>Email:</strong> {{email}}</p>
+    <p><strong>Gender:</strong> {{gender}}</p>
+    <p><strong>Fluent Language:</strong> {{fluentlanguage}}</p>
+    <p><strong>Learn Language:</strong> {{learnlanguage}}</p>
+
+    <a href="/logout">Logout</a>
+    <a href="/profile/contacts">Contact List</a>
+    <a href="/profile/view-messages">View Messages</a>
+</body>
+</html>
+

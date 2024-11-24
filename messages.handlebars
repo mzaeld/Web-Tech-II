@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #output {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            background-color: #fefefe;
+        }
+        form {
+            display: flex;
+            gap: 5px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Messages</h1>
+    <div class="container">
+        <h2>You are messaging: {{recipient}}</h2>
+        {{alert}}
+        <div id="output">Loading messages...</div>
+        <form method="post" action="/messages">
+            <input name="message" type="text" placeholder="Type your message here...">
+            <input name="recipient" type="hidden" value="{{recipient}}">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        async function getMessages() {
+            try {
+                const response = await fetch(`/getMessages/{{recipient}}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch messages.");
+                }
+                const messages = await response.json();
+                messages.sort((a, b) => new Date(a.time) - new Date(b.time));
+                let html = ``;
+                for (const m of messages) {
+                    html += `<div><strong>${m.sender}:</strong> ${m.message}</div>`;
+                }
+                const output = document.getElementById("output");
+                output.innerHTML = html || "No messages yet.";
+            } catch (error) {
+                console.error(error);
+                document.getElementById("output").innerText = "Failed to load messages.";
+            }
+        }
+
+        // Load messages when the page loads
+        getMessages();
+    </script>
+</body>
+</html>
